@@ -3,6 +3,7 @@ const cors = require('cors');
 const Mongoose = require('mongoose');
 const Session = require('express-session');
 const AuthRouter = require('./routes/AuthRouter');
+const { checkAndSendAlert } = require("./routes/Alert");
 
 const MongoDbSession = require('connect-mongodb-session')(Session);
 require('dotenv').config();
@@ -50,3 +51,11 @@ app.use(Session({
 
 app.use(AuthRouter)
  
+
+ 
+// ⏱ Run every 10 seconds
+setInterval(() => {
+  checkAndSendAlert();
+}, 10000);
+
+
