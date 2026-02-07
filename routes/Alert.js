@@ -6,12 +6,12 @@ let lastStatus = null; // prevent repeated emails
 
 // ---------------- PARAMETERS + RANGES ----------------
 const PARAMS = [
-  { name: "Eye Surface Temperature", unit: "°C", min: 33.0, max: 36.0 },
-  { name: "Ocular Redness Index", unit: "", min: 0.0, max: 1.5 },
+  { name: "Eye Surface Temperature", unit: "°C", min: 32.0, max: 35.0 },
+  { name: "Ocular Redness Index", unit: "", min: 0.0, max: 20 },
   { name: "Tear Film Stability", unit: "sec", min: 10, max: 30 },
-  { name: "Perfusion Index", unit: "%", min: 3, max: 20 },
-  { name: "Ocular Oxygenation Level", unit: "%", min: 92, max: 100 },
-  { name: "Tissue Health Index", unit: "", min: 70, max: 100 },
+  { name: "Perfusion Index", unit: "%", min: 0.4, max: 0.7 },
+  { name: "Ocular Oxygenation Level", unit: "%", min: 95, max: 100,},
+  { name: "Tissue Health Index", unit: "", min: 70, max: 100, },
   { name: "Ocular Hydration Index", unit: "%", min: 60, max: 100 },
 ];
 
@@ -70,7 +70,7 @@ const sendAlertMail = async (prediction, values) => {
 
   await transporter.sendMail({
     from: `"Eye Monitor" <${process.env.ALERT_EMAIL}>`,
-    to: process.env.DOCTOR_EMAIL,
+    to: process.env.TO_EMAIL,
     subject: "🚨 Eye Health Alert – Abnormal Reading",
     html,
   });

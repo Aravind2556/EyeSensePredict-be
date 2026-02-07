@@ -53,9 +53,9 @@ app.use(AuthRouter)
  
 
  
-// ⏱ Run every 10 seconds
+// ⏱ Run every  2 minutes
 setInterval(() => {
   checkAndSendAlert();
-}, 10000);
+}, 120000);
 
 
